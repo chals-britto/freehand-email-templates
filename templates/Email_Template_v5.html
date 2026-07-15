@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="x-apple-disable-message-reformatting">
+<title>Freehand Notification</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     FREEHAND EMAIL — GOLDEN MASTER v5
+     HOW TO USE: start from this file. Keep the blocks you need,
+     DELETE the ones you don't (each is marked DELETE IF UNUSED).
+     Fill the [SLOTS]. Change NOTHING else — no new colours,
+     components, or layouts. See the system prompt for rules.
+     ============================================================ */
+
+  body { margin:0; padding:0; background:#F3F6FC; -webkit-text-size-adjust:100%; }
+  table { border-collapse:collapse; }
+  img { border:0; display:block; }
+  a { color:#1F5D9C; text-decoration:underline; }        /* ONE link colour, everywhere */
+
+  .wrap { width:100%; background:#F3F6FC; padding:32px 12px; }
+  .card { width:100%; max-width:600px; margin:0 auto; background:#FFFFFF; border-radius:10px; overflow:hidden; }
+  .em-body { padding:32px 36px 28px; font-family:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; }
+
+  /* Header: title + accent bar (+ optional pill). Title & bar are ONE unit —
+     if there is no title, delete BOTH the title and the .accent bar. */
+  .em-title { font-size:24px; font-weight:800; color:#0F172A; margin:0; line-height:1.25; }
+  .accent { width:40px; height:3px; background:#FE6200; margin:12px 0 0; font-size:0; line-height:0; }
+
+  /* Status pill — show ONLY for record-state emails. Delete for transactional/FYI. */
+  .pill { display:inline-block; padding:4px 11px; border-radius:999px; font-size:11px; font-weight:600; border:1px solid; white-space:nowrap; }
+  .pill-rejected { background:#FEECEC; color:#B42318; border-color:#FECACA; }
+  .pill-approved { background:#E6F6EC; color:#15803D; border-color:#BBF7D0; }
+  .pill-action   { background:#FFF4DB; color:#B45309; border-color:#FDE68A; }
+
+  .em-lede { font-size:15px; color:#334155; line-height:1.6; margin:22px 0 0; }
+  .em-lede strong { color:#0F172A; font-weight:700; }     /* bold the key entity: name, ID, date, count */
+  .expiry { color:#B42318; }                               /* danger-red — EXPIRY / OVERDUE values ONLY */
+  .em-meta { font-size:13px; color:#5B6B82; margin:10px 0 0; }
+  .em-divider { border:0; border-top:1px solid #E5E9EF; margin:26px 0 2px; }
+  .em-label { font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#5B6B82; margin:28px 0 12px; }
+  .em-text { font-size:14px; color:#334155; line-height:1.6; margin:0; }
+
+  /* Details table — SINGLE record, label | value. Any number of rows is fine. */
+  .kv { width:100%; font-size:14px; }
+  .kv td { padding:9px 0; vertical-align:top; border-bottom:1px solid #E5E9EF; }
+  .kv tr:last-child td { border-bottom:0; }
+  .kv .k { color:#5B6B82; width:42%; }
+  .kv .v { color:#0F172A; font-weight:600; }
+  .kv code { font-family:'SFMono-Regular',Consolas,'Liberation Mono',monospace; font-size:13px; color:#0F172A; }
+
+  /* Data table — MULTIPLE records. Header on top, one record per row.
+     Group attributes into <=4 columns, each = bold primary + muted secondary. */
+  .dt-scroll { width:100%; overflow-x:auto; }
+  .dt { width:100%; font-size:13px; }
+  .dt thead th { text-align:left; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+                 color:#5B6B82; padding:12px 14px; background:#F8FAFC; border-bottom:1px solid #E5E9EF; white-space:nowrap; }
+  .dt tbody td { padding:14px; border-bottom:1px solid #E5E9EF; vertical-align:top; }
+  .dt tbody tr:nth-child(even) td { background:#F8FAFC; }
+  .dt .primary { display:block; color:#0F172A; font-weight:700; }
+  .dt .secondary { display:block; color:#5B6B82; font-size:12px; margin-top:2px; }
+  .dt-more { font-size:13px; color:#5B6B82; margin:12px 0 0; }   /* "…and N more" */
+
+  /* Numbered steps — NEUTRAL markers only. Never orange badges. */
+  .steps { width:100%; }
+  .steps td { padding:0 0 14px; vertical-align:top; }
+  .steps .num { width:24px; }
+  .steps .num span { display:inline-block; width:22px; height:22px; line-height:22px; text-align:center;
+                     background:#EEF2F7; color:#334155; border-radius:50%; font-size:12px; font-weight:700; }
+  .steps .txt { font-size:14px; color:#334155; line-height:1.5; padding-left:12px; }
+
+  /* Bulleted list — neutral */
+  .bullets { margin:0; padding-left:18px; }
+  .bullets li { font-size:14px; color:#334155; line-height:1.7; }
+
+  /* Temporary-password block — value is plain selectable monospace, NOT a link */
+  .cred { width:100%; background:#F8FAFC; border:1px solid #EEF2F7; border-radius:8px; }
+  .cred td { padding:12px 16px; font-size:14px; vertical-align:middle; }
+  .cred .k { color:#5B6B82; width:42%; }
+  .cred .pw { font-family:'SFMono-Regular',Consolas,'Liberation Mono',monospace; font-size:15px; font-weight:700;
+              color:#0F172A; letter-spacing:.5px; -webkit-user-select:all; user-select:all; }
+
+  /* Light-grey callout — supporting/contextual note. No coloured icon. */
+  .callout { background:#F8FAFC; border:1px solid #EEF2F7; border-radius:8px; padding:14px 16px; }
+  .callout p { font-size:13px; color:#334155; line-height:1.6; margin:0; }
+  .callout strong { color:#0F172A; }
+
+  /* Single primary CTA — deep links into Freehand. EXACT values, do not enlarge. */
+  .cta-wrap { padding:26px 0 4px; }
+  .btn { display:inline-block; background:#FE6200; color:#FFFFFF !important; text-decoration:none;
+         font-size:13.5px; font-weight:600; padding:10px 18px; border-radius:6px; }
+  .btn .arw { vertical-align:-2px; margin-left:7px; }
+
+  .footnote { font-size:12px; color:#5B6B82; line-height:1.6; margin:24px 0 0; }
+
+  /* Footer — TABLE-BASED, email-safe. Copy verbatim. (Flex/SVG watermark removed for Outlook.) */
+  .footer { background:#153F69; }
+  .footer td { padding:24px 30px; }
+  .f-tag { font-family:Georgia,'Times New Roman',serif; font-size:12px; color:#FFFFFF; line-height:1.3; }
+  .f-svc { font-family:'Open Sans',sans-serif; font-size:9px; color:rgba(255,255,255,0.78); line-height:1.3; margin-top:3px; }
+  .f-url a { font-family:'Open Sans',sans-serif; font-size:10px; font-weight:600; color:#FFFFFF !important; text-decoration:none; white-space:nowrap; }
+  .f-div { border-left:2px solid rgba(255,255,255,0.30); }
+
+  @media (max-width:520px) {
+    .em-body { padding:24px 20px; }
+    .footer td { padding:18px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Preheader: 1-sentence inbox preview. NEVER put a password/credential here. -->
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;">[PREHEADER — one sentence summary]</div>
+
+<div class="wrap">
+  <table role="presentation" class="card" width="600" cellpadding="0" cellspacing="0">
+
+    <!-- ── BODY ────────────────────────────────────────────── -->
+    <tr><td class="em-body">
+
+      <!-- HEADER ROW: title (left) + optional pill (right).
+           If no title is supplied, DELETE this whole table (title + accent). -->
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td valign="top">
+            <h1 class="em-title">[EMAIL_TITLE]</h1>
+            <div class="accent">&nbsp;</div>
+          </td>
+          <!-- DELETE IF UNUSED: status pill (record-state emails only) -->
+          <td valign="top" align="right" style="padding-left:12px;white-space:nowrap;">
+            <span class="pill pill-action">[STATUS_LABEL]</span>
+          </td>
+        </tr>
+      </table>
+
+      <!-- LEDE — bold the key entity. Danger-red only on expiry/overdue. -->
+      <p class="em-lede">[OPENING_LINE — e.g. <strong>[N] rate card(s)</strong> assigned to your account have expired. Renew them before <strong>[DEADLINE]</strong> to avoid billing disruption.]</p>
+      <!-- DELETE IF UNUSED: actor/meta line -->
+      <p class="em-meta">[ACTOR_LINE — e.g. Rejected by Sarah Walsh · 02 Oct 2025]</p>
+
+      <hr class="em-divider">
+
+      <!-- ══ CHOOSE THE BLOCKS YOU NEED — DELETE THE REST ══ -->
+
+      <!-- DELETE IF UNUSED: DETAILS TABLE (single record) -->
+      <p class="em-label">[SECTION_LABEL — e.g. Contract details]</p>
+      <table role="presentation" class="kv" cellpadding="0" cellspacing="0">
+        <tr><td class="k">Contract ID</td><td class="v"><code>MSA-2025-ACME</code></td></tr>
+        <tr><td class="k">Submitted by</td><td class="v">Sarah Walsh</td></tr>
+        <tr><td class="k">Value</td><td class="v">$248,000.00</td></tr>
+      </table>
+
+      <!-- DELETE IF UNUSED: DATA TABLE (multiple records, grouped 2-line cells) -->
+      <p class="em-label">[SECTION_LABEL — e.g. Rate cards expiring]</p>
+      <div class="dt-scroll">
+        <table role="presentation" class="dt" cellpadding="0" cellspacing="0">
+          <thead><tr>
+            <th>Carrier</th><th>Validity</th><th>Version</th><th>Uploaded</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="primary">DHLE · EUR</span><span class="secondary">Air</span></td>
+              <td><span class="primary">08 Apr 2026</span><span class="secondary expiry">14 days left</span></td>
+              <td><span class="primary">F 25.02</span><span class="secondary">DHL_F25.02_EU.xls</span></td>
+              <td><span class="primary">Sarah Walsh</span><span class="secondary">18 Jun 2026</span></td>
+            </tr>
+            <tr>
+              <td><span class="primary">TCIF · ALL</span><span class="secondary">Ground</span></td>
+              <td><span class="primary">28 Mar 2026</span><span class="secondary expiry">3 days left</span></td>
+              <td><span class="primary">V1.6</span><span class="secondary">TCIF_V1.6.xls</span></td>
+              <td><span class="primary">Ravi Kumar</span><span class="secondary">02 Apr 2026</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="dt-more">…and [N] more</p>
+
+      <!-- DELETE IF UNUSED: NUMBERED STEPS (neutral markers) -->
+      <p class="em-label">[SECTION_LABEL — e.g. Steps to reset your password]</p>
+      <table role="presentation" class="steps" cellpadding="0" cellspacing="0">
+        <tr><td class="num"><span>1</span></td><td class="txt">Log in with your email and the temporary password above.</td></tr>
+        <tr><td class="num"><span>2</span></td><td class="txt">You'll be prompted to create a new password.</td></tr>
+        <tr><td class="num"><span>3</span></td><td class="txt">Log in again with your new password.</td></tr>
+      </table>
+
+      <!-- DELETE IF UNUSED: BULLETED LIST -->
+      <ul class="bullets">
+        <li>First point.</li>
+        <li>Second point.</li>
+      </ul>
+
+      <!-- DELETE IF UNUSED: TEMPORARY-PASSWORD BLOCK -->
+      <p class="em-label">Your temporary credentials</p>
+      <table role="presentation" class="cred" cellpadding="0" cellspacing="0">
+        <tr><td class="k">Email</td><td>john.doe@acme.com</td></tr>
+        <tr><td class="k">Temporary password</td><td class="pw">rtzMjwG3</td></tr>
+      </table>
+
+      <!-- DELETE IF UNUSED: LIGHT-GREY CALLOUT (supporting/security note) -->
+      <div class="callout" style="margin-top:20px;">
+        <p><strong>Didn't request this?</strong> Contact support@freehand.ai immediately. This temporary password expires in <strong>24 hours</strong>.</p>
+      </div>
+
+      <!-- DELETE IF UNUSED: PLAIN PARAGRAPH -->
+      <p class="em-label">Why you're receiving this</p>
+      <p class="em-text">[SECTION_TEXT]</p>
+
+      <!-- SINGLE PRIMARY CTA — one per email, deep-links to freehand.ai -->
+      <div class="cta-wrap">
+        <a href="[CTA_URL]" class="btn">[CTA_LABEL]
+          <svg class="arw" width="13" height="13" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.5 10.5L10.5 3.5M10.5 3.5H4.9M10.5 3.5V9.1" stroke="#FFFFFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- LOCKED FOOTNOTE — identical on every email. Do not reword. -->
+      <p class="footnote">This is an automated notification from Freehand. Need help? Contact <a href="mailto:support@freehand.ai">support@freehand.ai</a></p>
+
+    </td></tr>
+
+    <!-- ── FOOTER (LOCKED, table-based) ─────────────────────── -->
+    <tr><td>
+      <table role="presentation" class="footer" width="100%" cellpadding="0" cellspacing="0">
+        <tr><td>
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+            <td valign="middle" width="140">
+              <!-- Hosted PNG (white logo on transparent). Base64/SVG do NOT render in Gmail/Outlook — must be a URL. -->
+              <img width="124" height="26" alt="Freehand" src="https://[HOST]/email-assets/freehand-logo-white.png">
+            </td>
+            <td valign="middle" class="f-div" style="padding-left:14px;">
+              <div class="f-tag">AI Teams for Spend Management</div>
+              <div class="f-svc">Logistics · Planning · Direct Materials · MRO · Services</div>
+            </td>
+            <td valign="middle" align="right" class="f-url"><a href="https://www.freehand.ai">www.freehand.ai</a></td>
+          </tr></table>
+        </td></tr>
+      </table>
+    </td></tr>
+
+  </table>
+</div>
+
+</body>
+</html>
