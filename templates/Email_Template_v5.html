@@ -78,7 +78,7 @@
 
   /* Temporary-password block — value is plain selectable monospace, NOT a link */
   .cred { width:100%; background:#F8FAFC; border:1px solid #EEF2F7; border-radius:8px; }
-  .cred td { padding:12px 16px; font-size:14px; vertical-align:middle; }
+  .cred td { font-size:14px; vertical-align:middle; }
   .cred .k { color:#5B6B82; width:42%; }
   .cred .pw { font-family:'SFMono-Regular',Consolas,'Liberation Mono',monospace; font-size:15px; font-weight:700;
               color:#0F172A; letter-spacing:.5px; -webkit-user-select:all; user-select:all; }
@@ -192,8 +192,14 @@
       <!-- DELETE IF UNUSED: TEMPORARY-PASSWORD BLOCK -->
       <p class="em-label">Your temporary credentials</p>
       <table role="presentation" class="cred" cellpadding="0" cellspacing="0">
-        <tr><td class="k">Email</td><td>john.doe@acme.com</td></tr>
-        <tr><td class="k">Temporary password</td><td class="pw">rtzMjwG3</td></tr>
+        <tr>
+          <td class="k" style="padding:16px 18px 4px;">Email</td>
+          <td style="padding:16px 18px 4px;">john.doe@acme.com</td>
+        </tr>
+        <tr>
+          <td class="k" style="padding:4px 18px 16px;">Temporary password</td>
+          <td class="pw" style="padding:4px 18px 16px;">rtzMjwG3</td>
+        </tr>
       </table>
 
       <!-- DELETE IF UNUSED: LIGHT-GREY CALLOUT (supporting/security note) -->
