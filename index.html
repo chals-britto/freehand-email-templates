@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freehand Email Templates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#0F172A; --body:#334155; --muted:#5B6B82; --bg:#F3F6FC; --rule:#E5E9EF; --navy:#153F69; --orange:#FE6200; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--body); font-family:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; }
+  .page { max-width:1080px; margin:0 auto; padding:48px 24px 80px; }
+  header h1 { font-size:28px; font-weight:800; color:var(--ink); margin:0; }
+  .accent { width:40px; height:3px; background:var(--orange); margin:12px 0 18px; }
+  header p { font-size:15px; color:var(--muted); line-height:1.6; margin:0 0 6px; max-width:640px; }
+  header a { color:#1F5D9C; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px; margin-top:36px; }
+  .card { background:#fff; border:1px solid var(--rule); border-radius:12px; overflow:hidden; display:flex; flex-direction:column; }
+  .card .frame { height:420px; border:0; border-bottom:1px solid var(--rule); background:var(--bg); width:100%; }
+  .card .meta { padding:16px 18px 18px; }
+  .card h2 { font-size:16px; font-weight:700; color:var(--ink); margin:0 0 6px; }
+  .card p { font-size:13px; color:var(--muted); line-height:1.55; margin:0 0 14px; }
+  .card .tag { display:inline-block; font-size:11px; font-weight:600; color:var(--muted); background:#F8FAFC; border:1px solid var(--rule); border-radius:6px; padding:2px 8px; margin:0 0 12px; }
+  .card a.open { display:inline-flex; align-items:center; gap:6px; background:var(--orange); color:#fff; text-decoration:none; font-size:13px; font-weight:600; padding:8px 14px; border-radius:6px; }
+  footer { margin-top:56px; font-size:12px; color:var(--muted); }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <h1>Freehand Email Templates</h1>
+    <div class="accent"></div>
+    <p>Live preview gallery. <strong>Start from the golden master</strong> — copy it, delete unused blocks, fill the slots. Don't regenerate from scratch.</p>
+    <p>Source: <a href="https://github.com/chals-britto/freehand-email-templates">github.com/chals-britto/freehand-email-templates</a> · Rules &amp; system prompt in the repo README.</p>
+  </header>
+
+  <div class="grid">
+    <div class="card">
+      <iframe class="frame" src="templates/Email_Template_v5.html" title="Golden master" loading="lazy"></iframe>
+      <div class="meta">
+        <span class="tag">Golden master</span>
+        <h2>Email_Template_v5.html</h2>
+        <p>Every approved component in one file, each marked DELETE IF UNUSED. This is the file you copy from.</p>
+        <a class="open" href="templates/Email_Template_v5.html">Open ↗</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <iframe class="frame" src="templates/examples/rate-cards-expiring.html" title="Rate cards expiring" loading="lazy"></iframe>
+      <div class="meta">
+        <span class="tag">Example · Action Required</span>
+        <h2>Rate cards expiring</h2>
+        <p>Multi-record data table with grouped two-line cells, danger-red expiry, "…and N more", single CTA.</p>
+        <a class="open" href="templates/examples/rate-cards-expiring.html">Open ↗</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <iframe class="frame" src="templates/examples/temp-credentials.html" title="Temporary credentials" loading="lazy"></iframe>
+      <div class="meta">
+        <span class="tag">Example · Security</span>
+        <h2>Temporary credentials</h2>
+        <p>No pill, credentials block, neutral numbered steps, security callout. Password kept out of the preheader.</p>
+        <a class="open" href="templates/examples/temp-credentials.html">Open ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>Browser preview only — validate in real clients (Outlook, Gmail, Apple Mail) or Litmus before rollout.</footer>
+</div>
+</body>
+</html>
