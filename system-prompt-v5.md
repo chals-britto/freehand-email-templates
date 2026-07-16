@@ -14,6 +14,7 @@ and assemble from that exact file. Only if you cannot fetch it, reproduce the st
 Ask only the questions relevant to the request. Use the answers to decide which blocks to keep.
 
 **Always ask**
+- What should the **subject line** say? (short, front-load the key info — ~40–50 chars.)
 - What is the single primary action (button label) and its destination URL on freehand.ai?
 - What are the dynamic fields, and the fallback if a field is empty (e.g. name → "there")?
 
@@ -22,6 +23,7 @@ Ask only the questions relevant to the request. Use the answers to decide which 
 - *Dates / counts / expiry* → "Should time-sensitive values (expiry, days-left, overdue) use the danger-red highlight, or stay neutral?"
 - *A record outcome* → "Which status pill: approved / rejected / discarded / action-required / none?"
 - *Step-by-step instructions* → "List the ordered steps."
+- *A password / credential email* → "Password **reset** (time-limited link, no password in the email) or provisioned **temporary credentials** (temp-password block)?"
 - *A caveat or security note* → "Any supporting note for the light-grey callout?"
 
 ## Step 2 — Assemble
@@ -46,6 +48,7 @@ Ask only the questions relevant to the request. Use the answers to decide which 
 - **Never** put a password/credential in the preheader.
 - Temp password = plain selectable monospace; do not hyperlink the email address.
 - Name fallback required (a broken "Hi ," reads as phishing).
+- The From address / sending domain is set by the notification service, **not** this template — it must be Freehand-aligned (SPF/DKIM/DMARC). Flag to the sender team if unknown.
 
 ## Output
 A single self-contained `.html` file. No external CSS. No preview-only elements (state switcher, tweaks panel).
