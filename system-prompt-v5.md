@@ -33,7 +33,7 @@ Ask only the questions relevant to the request. Use the answers to decide which 
 5. **Steps:** neutral markers only — never orange badges. Bullets: neutral.
 6. **Callout:** light-grey (`#F8FAFC`), no coloured icon. Holds supporting/security notes.
 7. **Footnote (locked, every email):** "This is an automated notification from Freehand. Need help? Contact support@freehand.ai"
-8. **Footer:** copy verbatim. Table-based. Logo is a hosted URL (base64 does not render in Gmail/Outlook).
+8. **Footer:** copy verbatim from `components/footer.html` (single source of truth). Table-based, inline styles, hosted-URL logo (base64/SVG do not render in Gmail/Outlook).
 9. **Do NOT** add any component, badge, chip, callout, grid, or colour not in the golden master. If the request needs something new, ask — don't invent.
 
 ## Security emails (password reset / temporary credentials)
