@@ -2,24 +2,38 @@
   Freehand brand footer — CANONICAL COMPONENT (single source of truth).
   Table-based + inline styles = renders in Outlook, Gmail, Apple Mail.
   Logo is a hosted PNG (base64/SVG do not render in email).
-  Paste this block in place of the footer when building any email.
-  Watermark is intentionally omitted — Outlook ignores CSS background images.
+
+  MOBILE: the stacking is driven by this @media block, which must live in the
+  email's <head> <style> (already in Email_Template_v5.html):
+
+    @media (max-width:520px) {
+      .f-logo, .f-copy, .f-url { display:block !important; width:100% !important; text-align:left !important; }
+      .f-copy { border-left:0 !important; padding-left:0 !important; margin-top:12px !important; }
+      .f-url  { margin-top:12px !important; }
+    }
+
+  FONTS: BL Pylon Serif (tagline) and Fustat (services) are brand fonts that
+  email clients don't have installed — they fall back to Georgia / Inter unless
+  hosted @font-face is added (works in Apple Mail/iOS, not Outlook).
+
+  WATERMARK: omitted — see README. To add it, host a watermark PNG and set it as
+  a background on the outer <td> with a VML fallback for Outlook.
 -->
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#153F69;border-radius:0 0 10px 10px;">
   <tr>
-    <td style="padding:24px 30px;">
+    <td style="padding:30px 30px;">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
         <tr>
-          <td valign="middle" style="width:1%;white-space:nowrap;padding-right:12px;">
+          <td class="f-logo" valign="middle" style="width:1%;white-space:nowrap;padding-right:12px;">
             <img src="https://chals-britto.github.io/freehand-email-templates/assets/freehand-logo-white.png"
                  width="124" height="26" alt="Freehand" style="display:block;width:124px;height:26px;">
           </td>
-          <td valign="middle" style="border-left:2px solid rgba(255,255,255,0.30);padding-left:12px;">
-            <div style="font-family:Georgia,'Cormorant Garamond',serif;font-size:12px;line-height:1.2;color:#FFFFFF;">AI Teams for Spend Management</div>
-            <div style="font-family:'Open Sans',Arial,sans-serif;font-size:9px;line-height:1;color:rgba(255,255,255,0.78);margin-top:4px;">Logistics&nbsp;&middot;&nbsp;Planning&nbsp;&middot;&nbsp;Direct Materials&nbsp;&middot;&nbsp;MRO&nbsp;&middot;&nbsp;Services</div>
+          <td class="f-copy" valign="middle" style="border-left:2px solid rgba(255,255,255,0.30);padding-left:12px;">
+            <div style="font-family:'BL Pylon Serif','Cormorant Garamond',Georgia,serif;font-size:12px;line-height:1.2;color:#FFFFFF;">AI Teams for Spend Management</div>
+            <div style="font-family:'Fustat','Inter',system-ui,Arial,sans-serif;font-size:9px;line-height:1;color:rgba(255,255,255,0.78);margin-top:4px;">Logistics&nbsp;&middot;&nbsp;Planning&nbsp;&middot;&nbsp;Direct Materials&nbsp;&middot;&nbsp;MRO&nbsp;&middot;&nbsp;Services</div>
           </td>
-          <td valign="middle" align="right" style="white-space:nowrap;">
-            <a href="https://www.freehand.ai" style="font-family:'Open Sans',Arial,sans-serif;font-size:10px;font-weight:600;color:#FFFFFF;text-decoration:none;">www.freehand.ai</a>
+          <td class="f-url" valign="middle" align="right" style="white-space:nowrap;">
+            <a href="https://www.freehand.ai/" style="font-family:'Open Sans',Arial,sans-serif;font-size:10px;font-weight:600;color:#FFFFFF;text-decoration:none;">www.freehand.ai</a>
           </td>
         </tr>
       </table>
